@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
+import mongoosePagninate from "mongoose-paginate-v2"
 
-export default mongoose.model('users', mongoose.Schema({
-                                                        first_name: {
-                                                            type: String,
-                                                            index: true
-                                                        },
-                                                        last_name: String,
-                                                        email: String,
-                                                        gender: String
-                                                        })
-)
+const userSchema = mongoose.Schema({
+    first_name: String,
+    last_name: String,
+    email: String,
+    gender: String
+})
+
+userSchema.plugin(mongoosePagninate)
+const userModel = mongoose.model('users', userSchema)
+
+export default userModel
